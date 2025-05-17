@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'trasker_app'
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,13 @@ WSGI_APPLICATION = 'Trasker.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
+print()
+print(f"DEBUG: Attempting to use DB_HOST={os.getenv('DB_HOST')}")
+print(f"DEBUG: Attempting to use DB_USER={os.getenv('DB_USER')}")
+print(f"DEBUG: Attempting to get DB_NAME={os.getenv('DB_NAME')}")
+print(f"DEBUG: Attempting to use DB_PORT={os.getenv('DB_PORT')}")
+print()
 
 DATABASES = {
     'default': env.db()

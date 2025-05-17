@@ -60,6 +60,7 @@ def setup():
     cursor = conn.cursor()
 
     # ---- New Tables for Multi-User Support ----
+    # Will be using the built-in support for users in Django
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id SERIAL PRIMARY KEY,
@@ -70,6 +71,7 @@ def setup():
         )
     ''')
 
+    # Converted to Django
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS teams (
             id SERIAL PRIMARY KEY,
@@ -78,6 +80,7 @@ def setup():
         )
     ''')
 
+    # Not needed with Django
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS user_team (
             user_id INTEGER,
@@ -88,6 +91,7 @@ def setup():
         )
     ''')
 
+    # converted to Django (now known as projects)
     # ---- Existing Tables Updated for Ownership & Team Association ----
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS epics (
@@ -103,6 +107,7 @@ def setup():
         )
     ''')
 
+ # Converted to Django in models.py (now known as workweeks)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS sprints (
             id SERIAL PRIMARY KEY,
@@ -119,6 +124,7 @@ def setup():
         )
     ''')
 
+    # This has been converted to Django
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS tasks (
             id SERIAL PRIMARY KEY,
@@ -140,6 +146,7 @@ def setup():
         )
     ''')
 
+    # this has been converted to Django
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS task_sessions (
             id SERIAL PRIMARY KEY,
@@ -151,6 +158,7 @@ def setup():
         )
     ''')
 
+    # this has been converted to Django (now known as issues)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS bugs (
             id SERIAL PRIMARY KEY,
@@ -168,6 +176,7 @@ def setup():
         )
     ''')
 
+    # converted to Django
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS notes (
             id SERIAL PRIMARY KEY,
@@ -183,6 +192,7 @@ def setup():
         )
     ''')
 
+    # converted to Django
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS documents (
             id SERIAL PRIMARY KEY,

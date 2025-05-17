@@ -30,3 +30,11 @@ The project files that will remain after conversion are:
   - manage.py
   - requirements.txt
 
+  
+The trasker_db_psql.py has been converted to a model in Django.
+To run the server enter the following in the terminal
+1. `docker-compose up --build` (leave this terminal window running)
+2. `docker-compose exec web python manage.py makemigrations trasker_app` (new terminal window)
+3. `docker-compose exec web python manage.py migrate`
+4. create an admin account by using `docker-compose exec web python manage.py createsuperuser`
+5. Access localhost:8000/admin and try your admin credentials to confirm the DB structure has been built.
