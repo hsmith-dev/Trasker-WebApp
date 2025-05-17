@@ -1,0 +1,38 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  web:
+    build: .  # Tells Docker Compose to build the image from the Dockerfile in the current directory
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app  # Mounts your current directory (project code) into /app in the container
+                # This allows live code reloading during development.
+    ports:
+      - "8000:8000"  # Maps port 8000 on your host to port 8000 in the container
+    environment:
+      - SECRET_KEY=django-insecure-h70bqm81^rbv1eea1is#k-@*n+(^um-foj8@(hkij&hvm)1ie@
+      - DEBUG=1 # Set to 0 in production
+      - DB_ENGINE=django.db.backends.postgresql
+      - DB_NAME=trasker_db # Should match POSTGRES_DB below
+      - DB_USER=trasker_user # Should match POSTGRES_USER below
+      - DB_PASSWORD=wotgyx-Risty5-hazsej # Should match POSTGRES_PASSWORD below
+      - DB_HOST=db # This is the service name of the PostgreSQL container
+      - DB_PORT=5432
+    depends_on:
+      - db # Ensures the 'db' service starts before the 'web' service
+
+  db:
+    image: postgres:15-alpine # Use an official PostgreSQL image (alpine is smaller)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/ # Persists database data across container restarts
+    environment:
+      - POSTGRES_DB=trasker_db
+      - POSTGRES_USER=trasker_user
+      - POSTGRES_PASSWORD=wotgyx-Risty5-hazsej # Ensure this matches DB_PASSWORD for the web service
+    ports: # Optional: if you want to connect to Postgres from your host machine directly
+      - "5432:5432"
+
+
+volumes:
+  postgres_data: # Defines the named volume for data persistence
