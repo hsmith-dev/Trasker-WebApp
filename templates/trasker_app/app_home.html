@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome - Trasker{% endblock %}
+
+{% block content %}
+  <h2>Welcome to Trasker, {{ username }}!</h2>
+  <p>This is your application home page.</p>
+  <p><a href="{% url 'logout' %}">Logout</a></p>
+
+  {% endblock %}

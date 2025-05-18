@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Trasker{% endblock %}</title>
+</head>
+<body>
+<header>
+<h1>Trasker</h1>
+<nav>
+<a href="{% url 'trasker_app:app_home' %}">Home</a> |
+{% if user.is_authenticated %}
+<span>Hello, {{ user.username }}!</span> |
+<a href="{% url 'logout' %}">Logout</a> |
+<a href="{% url 'admin:index' %}">Admin</a>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+{% endif %}
+</nav>
+<hr>
+</header>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer>
+    <hr>
+    <p>&copy; Trasker {{ 2025 }}</p> </footer>
+</body>
+</html>

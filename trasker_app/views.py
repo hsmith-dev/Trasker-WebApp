@@ -4,6 +4,17 @@ from django.contrib.auth.decorators import login_required
 from .models import Task, Team
 from .forms import TaskForm # You'll create a TaskForm in forms.py
 
+
+@login_required # This ensures only logged-in users can access this view
+def app_home_view(request):
+    # You can add logic here later to fetch data for the dashboard
+    # For now, it just renders a template.
+    context = {
+        'username': request.user.username,
+    }
+    return render(request, 'trasker_app/app_home.html', context)
+
+
 @login_required
 def add_task_view(request):
     if request.method == 'POST':
@@ -20,3 +31,5 @@ def add_task_view(request):
     else:
         form = TaskForm()
     return render(request, 'trasker_app/add_task_form.html', {'form': form})
+
+

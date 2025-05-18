@@ -67,17 +67,9 @@ WSGI_APPLICATION = 'Trasker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-print()
-print(f"DEBUG: Attempting to use DB_HOST={os.getenv('DB_HOST')}")
-print(f"DEBUG: Attempting to use DB_USER={os.getenv('DB_USER')}")
-print(f"DEBUG: Attempting to get DB_NAME={os.getenv('DB_NAME')}")
-print(f"DEBUG: Attempting to use DB_PORT={os.getenv('DB_PORT')}")
-print()
-
 DATABASES = {
     'default': env.db()
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -119,3 +111,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# After login the users will be redirected here
+LOGIN_REDIRECT_URL = '/'  # Or '/dashboard/', or any URL you want users to land on after login
+LOGOUT_REDIRECT_URL = '/' # Or '/accounts/login/', or any URL after logout
